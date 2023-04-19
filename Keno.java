@@ -36,7 +36,6 @@ public class Keno extends JFrame{
    private JTextField tfMatched = new JTextField(2);
    private JTextField tfWinnings = new JTextField(10);
    private JTextField tfTotalWon = new JTextField(10);
-   private JTextField tflabelBank = new JTextField(10);
    private JTextField tfPicks = new JTextField(2);
    private JTextField tfBet = new JTextField(4);
    private JTextField tfBank = new JTextField(10);
@@ -48,7 +47,6 @@ public class Keno extends JFrame{
    // Arrs
    private JButton[] arrNumbers = new JButton[SIZE];
    private String[] arrBets = {"$10", "$20", "$50", "$100"};
-   private Integer[] arrCompNumbers = new Integer[10];
    // JOptionPane
    private JOptionPane opStartGame = new JOptionPane();
    private JOptionPane opInstructions = new JOptionPane();
@@ -62,7 +60,6 @@ public class Keno extends JFrame{
    private int count = 0; // Track number of user buttons selected
    private int currentBet = 10; // Initial bet set to 10
    private int colorCount = 0; // Track number of matches made with color
-   private int saveGame = 0; // 0 value to start new game 1 to load save game
    // Values displayed on receipt
    private int totalRounds = 0; 
    private int startBank = 500;
@@ -84,7 +81,7 @@ public class Keno extends JFrame{
       // Import KenoSave or start new game
       String[] responses = {"New Game", "Load Game"};  // response buttons for new game optionpane
       // Pop up window to load save game or start new game
-      int saveGame = opStartGame.showOptionDialog(null, "Play a new game or start from your saved bank", "Play Keno", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, null, responses, 0);
+      int saveGame = JOptionPane.showOptionDialog(null, "Play a new game or start from your saved bank", "Play Keno", JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, null, responses, 0);
       if(saveGame == 1){ // Load a saved game
          try {
          // Load saved game
@@ -241,7 +238,7 @@ public class Keno extends JFrame{
             instructions += "After each round click Reset to clear your selections\n";
             instructions += "When you are finished playing click Cash Out\n";
             instructions += "<html><font color=#00FFFF>Color1</font></html>";
-            opInstructions.showMessageDialog(null, instructions, "Instructions", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, instructions, "Instructions", JOptionPane.PLAIN_MESSAGE);
          }
             
          // Increase tfPicks for every number button selected   
@@ -356,7 +353,7 @@ public class Keno extends JFrame{
             sReceipt += "Receipt located next to Keno.java file";
             try{   
                cashOut(bank, sReceipt);
-               opReceipt.showMessageDialog(null, sReceipt, "Receipt", JOptionPane.PLAIN_MESSAGE);
+               JOptionPane.showMessageDialog(null, sReceipt, "Receipt", JOptionPane.PLAIN_MESSAGE);
                System.exit(0);
             }
             catch(Exception e){
